@@ -10,6 +10,10 @@ class TopTabBarDemo extends StatefulWidget{
 }
 
 class _TopTabBarDemoState extends State<TopTabBarDemo>{
+  final List<Tab> tabs = <Tab>[
+    Tab(text: "tab1"),
+    Tab(text: "tab2")
+  ];
   @override
   Widget build(BuildContext context) {
     return  getContainerWidget();
@@ -28,12 +32,22 @@ class _TopTabBarDemoState extends State<TopTabBarDemo>{
               ),
                 bottom: false,
               )
-              ,Expanded(
-                child: Container(
+              ,Container(
                   color: Colors.white,
+                  child: Center(
+                    child:  DefaultTabController(length: tabs.length, child:Column(
+                      children: <Widget>[
+                        TabBarView(
+                          children: tabs.map((Tab tab){
+                            return Center(child: Text(tab.text));
+                          }).toList(),
+                        )
+                      ],
+                    )),
+                  ),
 
                 ),
-              )
+
             ]
         ),
       );
